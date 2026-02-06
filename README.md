@@ -21,6 +21,18 @@ PRESENZ is built on the principle of **presence without identity**. The PSZ toke
 | **Blockchain** | Base (Ethereum L2) |
 | **Supply Model** | Fixed Cap + Deflationary Burns |
 
+## 🚀 Deployed Contracts
+
+### Base Sepolia Testnet (Chain ID: 84532)
+
+| Contract | Address | Explorer |
+|----------|---------|----------|
+| **PresenzToken** | `0xf28e5b3656564949a4F085f64b94Ab0B184C6d87` | [View on Basescan](https://sepolia.basescan.org/address/0xf28e5b3656564949a4f085f64b94ab0b184c6d87) |
+| **VestingContract** | `0xC638A478010287a60E18f2B9b9961FC3db04142C` | [View on Basescan](https://sepolia.basescan.org/address/0xc638a478010287a60e18f2b9b9961fc3db04142c) |
+| **MiningRewards** | `0xb7b1d45D337e6cCA2027a68185aE2F7979f5a2FA` | [View on Basescan](https://sepolia.basescan.org/address/0xb7b1d45d337e6cca2027a68185ae2f7979f5a2fa) |
+
+> 📝 **Note**: Mainnet deployment addresses will be added here after production launch.
+
 ## Smart Contracts
 
 ### Core Contracts
@@ -136,13 +148,45 @@ forge fmt
 
 ### Deploy
 
-```bash
-# Deploy to Base Sepolia (testnet)
-forge script script/DeployPresenzToken.s.sol:DeployPresenzToken --rpc-url $BASE_SEPOLIA_RPC --broadcast --verify
+#### Quick Start (Recommended)
 
-# Deploy to Base Mainnet
-forge script script/DeployPresenzToken.s.sol:DeployPresenzToken --rpc-url $BASE_MAINNET_RPC --broadcast --verify
+```bash
+# Use the automated deployment script
+chmod +x deploy.sh
+./deploy.sh
 ```
+
+#### Manual Deployment
+
+```bash
+# Setup
+cp .env.example .env
+nano .env  # Configure your settings
+
+# Deploy to Base Sepolia (testnet)
+forge script script/DeployPresenzToken.s.sol:DeployPresenzToken \
+    --rpc-url base_sepolia \
+    --broadcast \
+    --verify \
+    -vvvv
+
+# Deploy to Base Mainnet (production)
+forge script script/DeployPresenzToken.s.sol:DeployPresenzToken \
+    --rpc-url base_mainnet \
+    --broadcast \
+    --verify \
+    -vvvv
+```
+
+📖 **For complete deployment guide**, see [DEPLOYMENTS.md](DEPLOYMENTS.md)
+
+---
+
+## 📚 Documentation
+
+- **[DEPLOYMENTS.md](DEPLOYMENTS.md)** - Complete deployment guide, addresses, and commands
+- **[PRESENZ_TOKENOMICS.md](PRESENZ_TOKENOMICS.md)** - Token economics and distribution
+- **[deploy.sh](deploy.sh)** - Interactive deployment script
 
 ## Contract Architecture
 
