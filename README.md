@@ -231,12 +231,5 @@ forge script script/DeployPresenzToken.s.sol:DeployPresenzToken \
 
 MIT License - see [LICENSE](LICENSE) for details.
 
-## Links
-
-- [Website](https://presenz.io)
-- [Whitepaper](https://presenz.io/whitepaper)
-- [Documentation](https://docs.presenz.io)
-
----
 
 **Disclaimer:** This document is for informational purposes only. The PSZ token is a utility token designed for the PRESENZ ecosystem and does not represent equity, ownership, or investment interest.
