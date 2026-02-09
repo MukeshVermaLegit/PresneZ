@@ -472,38 +472,102 @@ cast receipt <TX_HASH> --rpc-url base_sepolia
 
 ---
 
-## 🆘 Troubleshooting
+📋 DEPLOYMENT TRANSACTION BREAKDOWN
+═══════════════════════════════════════════════════════════════
 
-### "Insufficient funds for gas"
-```bash
-# Check balance
-cast balance $YOUR_ADDRESS --rpc-url base_sepolia
+✅ Total Transactions: 9
+📦 Block: 37,303,530
+⛽ Total Gas Used: 4,570,159
+💰 Total Cost: 0.0000054841908 ETH (~$0.01)
 
-# Get testnet ETH from faucet
-```
+═══════════════════════════════════════════════════════════════
+🔧 PHASE 1: CONTRACT DEPLOYMENT (3 transactions)
+═══════════════════════════════════════════════════════════════
 
-### "Nonce too low/high"
-```bash
-# Check current nonce
-cast nonce $YOUR_ADDRESS --rpc-url base_sepolia
-```
+1️⃣ PresenzToken Contract
+   TX: 0x0601274234ea3b6fc62546a352cf06fd56974747b522fc0f86d71ec3b6a1261e
+   Address: 0xf28e5b3656564949a4F085f64b94Ab0B184C6d87
+   ⛽ Gas: 861,589
+   💰 Cost: 0.0000010339068 ETH
+   📝 Action: Deploy ERC20 token contract
+   
+2️⃣ VestingContract
+   TX: 0x04a583f90d466d76429ae9c0cc5a3dec901f462295f5506512b2f867ba56dd14
+   Address: 0xC638A478010287a60E18f2B9b9961FC3db04142C
+   ⛽ Gas: 39,133
+   💰 Cost: 0.0000000469596 ETH
+   📝 Action: Deploy vesting contract for team/investors/advisors
+   
+3️⃣ MiningRewards Contract
+   TX: 0x3722a5919b6355ef197ec8165f3685d7f33b7b434b3f9af395d7633959655af4
+   Address: 0xb7b1d45D337e6cCA2027a68185aE2F7979f5a2FA
+   ⛽ Gas: 1,700,371
+   💰 Cost: 0.0000020404452 ETH
+   📝 Action: Deploy mining rewards distribution contract
 
-### "Contract verification failed"
-```bash
-# Manual verification
-forge verify-contract <ADDRESS> \
-    src/PresenzToken.sol:PresenzToken \
-    --chain-id 84532 \
-    --etherscan-api-key $BASESCAN_API_KEY \
-    --constructor-args $(cast abi-encode "constructor(address,address)" $TREASURY $ADMIN)
-```
+═══════════════════════════════════════════════════════════════
+💰 PHASE 2: TOKEN MINTING (6 transactions)
+═══════════════════════════════════════════════════════════════
 
-### "Transaction reverted"
-- Check you have the required role (MINTER_ROLE, PAUSER_ROLE, etc.)
-- Verify contract is not paused
-- Ensure sufficient token balance
-- Check allowances for transferFrom operations
+4️⃣ Mint to Liquidity Wallet
+   TX: 0x533ab2ff48f0e6f07f23de4b7667eb6752df93292586f9aefe264574297005df
+   To: 0x49D730c95f70206b49ecC146C30BD4950369F8a9
+   Amount: 50,000,000 PSZ (5%)
+   📝 Purpose: DEX liquidity provision
 
----
+5️⃣ Mint to Marketing Wallet
+   TX: 0x292b1c5f14c4de7a53d18a85653def56122cbe555643034fa5f2ae13a55e459b
+   To: 0x49D730c95f70206b49ecC146C30BD4950369F8a9
+   Amount: 20,000,000 PSZ (2%)
+   📝 Purpose: Airdrops, campaigns, partnerships
 
-**Last Updated**: February 6, 2026
+6️⃣ Mint to Treasury
+   TX: 0x06f693531d60c81bb1c6398f7954bfe66c5e112aa378aacea8399e56e56c219f
+   To: 0x49D730c95f70206b49ecC146C30BD4950369F8a9
+   Amount: 150,000,000 PSZ (15%)
+   📝 Purpose: DAO treasury, operations
+
+7️⃣ Mint to Business Dev Wallet
+   TX: 0x4aa4bc61ef34de28e82ec70fe31f842060ec4d0778c2d7051ef8bee2871be758
+   To: 0x49D730c95f70206b49ecC146C30BD4950369F8a9
+   Amount: 80,000,000 PSZ (8%)
+   📝 Purpose: Strategic partnerships, ecosystem growth
+
+8️⃣ Mint to Vesting Contract
+   TX: 0x3e342ed98b64c4ac695662811588b7ae6b99c46c2f7ba7c75f672863df99197d
+   To: 0xC638A478010287a60E18f2B9b9961FC3db04142C
+   Amount: 300,000,000 PSZ (30%)
+   📝 Purpose: Team (150M) + Investors (120M) + Advisors (30M)
+   📌 Locked with vesting schedules
+
+9️⃣ Mint to Mining Contract
+   TX: 0x0a1be0f5134918d636d52949b051174e25c717ce3173d71ffa963402eb801bec
+   To: 0xb7b1d45D337e6cCA2027a68185aE2F7979f5a2FA
+   Amount: 400,000,000 PSZ (40%)
+   📝 Purpose: Community mining rewards over 7 years
+   📌 Controlled distribution via emission schedule
+
+═══════════════════════════════════════════════════════════════
+📊 FINAL STATE
+═══════════════════════════════════════════════════════════════
+
+✅ Total Minted: 1,000,000,000 PSZ (100%)
+✅ All contracts deployed and funded
+✅ All contracts verified on Basescan
+✅ No errors or reverts
+
+Distribution Summary:
+  🔓 Immediate Access (300M - 30%):
+     • Liquidity: 50M
+     • Marketing: 20M
+     • Treasury: 150M
+     • Business Dev: 80M
+     
+  🔒 Locked/Controlled (700M - 70%):
+     • Vesting: 300M (released over 1-3 years)
+     • Mining: 400M (distributed over 7 years)
+
+═══════════════════════════════════════════════════════════════
+🔗 View All Transactions on Basescan:
+https://sepolia.basescan.org/address/0xf28e5b3656564949a4f085f64b94ab0b184c6d87
+═══════════════════════════════════════════════════════════════
